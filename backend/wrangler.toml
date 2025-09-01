@@ -1,0 +1,36 @@
+name = "fans-kdm-api"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "fans-kdm-api"
+
+[env.staging]
+name = "fans-kdm-api-staging"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "fans-kdm-db"
+database_id = "your-database-id-here"
+
+# KV Namespace for caching
+[[kv_namespaces]]
+binding = "CACHE"
+id = "your-kv-namespace-id-here"
+preview_id = "your-preview-kv-namespace-id-here"
+
+# R2 Bucket for file storage
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "fans-kdm-storage"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+JWT_SECRET = "your-jwt-secret-here"
+YOUTUBE_API_KEY = "your-youtube-api-key-here"
+MIDTRANS_SERVER_KEY = "your-midtrans-server-key-here"
+MIDTRANS_CLIENT_KEY = "your-midtrans-client-key-here"
+TRAKTEER_URL = "https://trakteer.id/anichinapk"
+YOUTUBE_CHANNEL_ID = "UCxxxxxxxxxxxxxxxxxxxxxxxxxx"

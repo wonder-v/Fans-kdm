@@ -1,0 +1,28 @@
+{
+  "name": "fans-kdm-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Fans-Kdm application using Cloudflare Workers",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create fans-kdm-db",
+    "db:migrate": "wrangler d1 execute fans-kdm-db --file=../database/schema/schema.sql",
+    "kv:create": "wrangler kv:namespace create CACHE"
+  },
+  "dependencies": {
+    "itty-router": "^3.0.12"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "d1",
+    "kv",
+    "r2",
+    "api"
+  ],
+  "author": "Fans-Kdm Team",
+  "license": "MIT"
+}
