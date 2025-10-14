@@ -1,6 +1,6 @@
 import { Router } from 'itty-router';
 
-const router = Router();
+const router = Router({ base: '/api/videos' });
 
 // Get latest videos from YouTube channel
 router.get('/', async (request, env) => {

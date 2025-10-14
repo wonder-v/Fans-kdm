@@ -1,7 +1,7 @@
 import { Router } from 'itty-router';
 import { sign, verify } from 'hono/jwt';
 
-const router = Router();
+const router = Router({ base: '/api/auth' });
 
 // User registration
 router.post('/register', async (request, env) => {

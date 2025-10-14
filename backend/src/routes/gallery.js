@@ -1,6 +1,6 @@
 import { Router } from 'itty-router';
 
-const router = Router();
+const router = Router({ base: '/api/gallery' });
 
 // Get gallery items
 router.get('/', async (request, env) => {

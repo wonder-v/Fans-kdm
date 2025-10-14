@@ -3,11 +3,11 @@
 ## Prerequisites
 - Cloudflare Account
 - YouTube API Key
-- Midtrans Account
-- Node.js & npm
+- Midtrans Account (optional)
+- Node.js v18+ & npm
 - Wrangler CLI
 
-## Backend Deployment
+## Backend Deployment (Cloudflare Workers)
 
 ### 1. Setup Cloudflare
 ```bash
@@ -15,28 +15,76 @@ npm install -g wrangler
 wrangler login
 ```
 
-### 2. Create Resources
+### 2. Install Dependencies
 ```bash
 cd backend
+npm install
+```
 
+### 3. Create Resources
+```bash
 # Create D1 Database
 wrangler d1 create fans-kdm-db
+# Copy the database_id from output
 
 # Create KV Namespace
 wrangler kv:namespace create CACHE
+# Copy the id from output
+
+# Create KV Namespace for Preview
+wrangler kv:namespace create CACHE --preview
+# Copy the preview_id from output
 
 # Create R2 Bucket
 wrangler r2 bucket create fans-kdm-storage
 ```
 
-### 3. Configure Environment
-Edit `backend/wrangler.toml` dengan IDs yang didapat.
+### 4. Configure Environment
+Edit `backend/wrangler.toml` dan update dengan IDs dari step 3:
 
-### 4. Deploy
+```toml
+[[d1_databases]]
+binding = "DB"
+database_name = "fans-kdm-db"
+database_id = "paste-your-database-id-here"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "paste-your-kv-id-here"
+preview_id = "paste-your-preview-kv-id-here"
+```
+
+### 5. Migrate Database
 ```bash
-npm install
+wrangler d1 execute fans-kdm-db --file=../database/schema/schema.sql
+```
+
+### 6. Set Environment Variables (Secrets)
+```bash
+wrangler secret put JWT_SECRET
+# Enter your secret when prompted
+
+wrangler secret put YOUTUBE_API_KEY
+# Enter your YouTube API key
+
+wrangler secret put MIDTRANS_SERVER_KEY
+# Enter your Midtrans server key (optional)
+
+wrangler secret put MIDTRANS_CLIENT_KEY
+# Enter your Midtrans client key (optional)
+```
+
+### 7. Deploy to Cloudflare
+```bash
 npm run deploy
 ```
+
+### 8. Verify Deployment
+```bash
+curl https://fans-kdm-api.your-subdomain.workers.dev/health
+```
+
+Expected response: `{"status":"OK","timestamp":"..."}`
 
 ## Frontend Deployment
 
