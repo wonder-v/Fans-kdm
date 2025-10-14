@@ -1,6 +1,6 @@
 import { Router } from 'itty-router';
 
-const router = Router();
+const router = Router({ base: '/api/donations' });
 
 // Get Trakteer integration info
 router.get('/trakteer', async (request, env) => {

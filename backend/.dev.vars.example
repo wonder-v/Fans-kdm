@@ -1,0 +1,10 @@
+# Local development environment variables
+# Copy this file to .dev.vars for local development
+
+JWT_SECRET=your-development-jwt-secret-key-here
+YOUTUBE_API_KEY=your-youtube-api-key
+MIDTRANS_SERVER_KEY=your-midtrans-server-key
+MIDTRANS_CLIENT_KEY=your-midtrans-client-key
+TRAKTEER_URL=https://trakteer.id/anichinapk
+YOUTUBE_CHANNEL_ID=UCxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENVIRONMENT=development

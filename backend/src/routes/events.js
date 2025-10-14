@@ -1,6 +1,6 @@
 import { Router } from 'itty-router';
 
-const router = Router();
+const router = Router({ base: '/api/events' });
 
 // Get all events
 router.get('/', async (request, env) => {

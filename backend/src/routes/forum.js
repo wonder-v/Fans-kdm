@@ -1,6 +1,6 @@
 import { Router } from 'itty-router';
 
-const router = Router();
+const router = Router({ base: '/api/forum' });
 
 // Get all posts
 router.get('/posts', async (request, env) => {
